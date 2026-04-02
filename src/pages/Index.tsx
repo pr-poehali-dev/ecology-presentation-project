@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const IMG_POLLUTION = "https://cdn.poehali.dev/projects/3e92cb31-4d9c-4ae1-b25f-49a26e009221/files/82140463-6ed9-4038-ad50-5a56dd34eab5.jpg";
@@ -61,6 +62,7 @@ function Section({ id, children, className = "" }: { id: string; children: React
 }
 
 export default function Index() {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -140,13 +142,29 @@ export default function Index() {
           <p className="text-[#d0e8cc] text-lg md:text-xl max-w-2xl leading-relaxed">
             Комплексное исследование экологической ситуации, анализ причин загрязнения и разработка практических решений для сохранения природы родного края
           </p>
-          <button
-            onClick={() => scrollTo("problem")}
-            className="mt-10 inline-flex items-center gap-2 bg-[#2d5a27] hover:bg-[#3d7a37] text-[#e8f5e2] px-8 py-4 rounded-full font-medium transition-all hover:scale-105"
-          >
-            Перейти к проекту
-            <Icon name="ArrowDown" size={18} />
-          </button>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <button
+              onClick={() => scrollTo("problem")}
+              className="inline-flex items-center gap-2 bg-[#2d5a27] hover:bg-[#3d7a37] text-[#e8f5e2] px-8 py-4 rounded-full font-medium transition-all hover:scale-105"
+            >
+              Перейти к проекту
+              <Icon name="ArrowDown" size={18} />
+            </button>
+            <button
+              onClick={() => navigate("/slides")}
+              className="inline-flex items-center gap-2 bg-[#e8f5e2]/20 hover:bg-[#e8f5e2]/30 border border-[#e8f5e2]/30 text-[#e8f5e2] px-6 py-4 rounded-full font-medium transition-all hover:scale-105"
+            >
+              <Icon name="Presentation" size={18} />
+              Презентация
+            </button>
+            <button
+              onClick={() => navigate("/referat")}
+              className="inline-flex items-center gap-2 bg-[#e8f5e2]/20 hover:bg-[#e8f5e2]/30 border border-[#e8f5e2]/30 text-[#e8f5e2] px-6 py-4 rounded-full font-medium transition-all hover:scale-105"
+            >
+              <Icon name="FileText" size={18} />
+              Реферат
+            </button>
+          </div>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <Icon name="ChevronDown" size={28} className="text-[#e8f5e2]/50" />
